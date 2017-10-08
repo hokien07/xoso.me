@@ -1,0 +1,161 @@
+*{
+	margin: 0;
+	padding:0;
+	text-decoration: none;
+	font-family: arial, sans-serif, Helvetica;
+}
+
+body {
+	background-color: #e1e3e4;
+}
+/*Định dạng phần header*/
+.title{
+	background-color: #fbfbfb;
+	border-bottom: 1px solid #f3f3f3;
+	padding: 10px 10px 10px 0;
+}
+.title strong{
+	font-family: arial;
+	font-size: 13px;
+}
+
+.logo{
+	background-color: #e1e3e4;
+}
+
+.logo-home{
+	padding: 10px 0 10px 0px;
+}
+.logo-home a{
+	font-size: 40px;
+	color: red;
+	font-weight: 900;
+	text-decoration: none;
+	font-family: Times New Roman;
+}
+.logo-home p {
+	margin: 0px;
+	font-weight: bold;
+}
+.banner-qc {
+	margin-top: 18px;
+}
+.nav {
+	background-color: #ed1c25;
+	height: 40px;
+	line-height: 40px;
+
+}
+.nav ul{
+	text-align: left;
+	margin: 0;
+}
+
+.nav ul li{
+	display:inline-block;
+	padding:0px 15px;
+	position: relative;
+	box-sizing: border-box;
+
+}
+
+.nav ul li a{
+	text-decoration: none;
+	font-family: arial;
+	color: white;
+	font-weight: bold;
+
+}
+.nav ul li:hover{
+	background-color: #ffe500;
+}
+.nav ul li a:hover{
+	color: #e80000;
+	text-decoration: underline;
+}
+.sub-menu{
+	display: none;
+	position: absolute;
+}
+ul.sub-menu li{
+	border-bottom: 1px dashed #e7e7e7;
+	width: 100%;
+	padding:0 0 0 10px;
+
+}
+
+.nav ul li:hover .sub-menu{
+	display: block;
+	margin-top: 0;
+	left: 0;
+	width: 250px;
+	background-color: red;
+}
+ul.sub-menu li a{
+	color: #000000;
+}
+
+/*Định dạng phần sidebar*/
+#sidebar{
+	background-color: #fff;
+}
+#sidebar h2, #sidebar-right h2 {
+	background-color: #FF6600;
+	color: #fff;
+	text-aligin: left;
+	padding: 7px 0px 7px 5px;
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: bold;
+}
+#sidebar ul, #sidebar-right ul {
+	list-style-position: inside;
+	list-style-type: none;
+}
+#sidebar ul li, #sidebar-right ul li {
+	line-height: 35px;
+	border-bottom: 1px solid #e1e3e4;
+	padding-left: 10px;
+}
+#sidebar ul li:last-child, #sidebar-right ul li:last-child {
+	border: none;
+	line-height: 20px;
+}
+#sidebar ul li a, #sidebar-right ul li a {
+	color: #111;
+	font-weight: 500;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+/*sidebar right*/
+#sidebar-right {
+	background-color: #fff;
+	padding: -15px;
+	margin-top: 20px;
+}
+
+.hinh-tin {
+	width: 100%;
+	height: auto;
+	padding: 0px;
+	margin-top: 10px;
+}
+.tin {
+	margin-left: -25px;
+}
+
+/*content page*/
+.content-page {
+	margin-top: 20px;
+}
+
+/*footer*/
+footer {
+	padding-top: 20px;
+	background-color: #F3F3F3;
+}
+.col-left-footer img{
+	width: 20%;
+	float: left
+}
