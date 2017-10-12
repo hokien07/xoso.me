@@ -1,62 +1,70 @@
+<?php
+  include("database/dbCon.php");
+?>
 <div id="sidebar">
+  <?php
+  //lay ten tinh trong database
+  /**idMien :
+  *0: xo so mien bac
+  *1: so xo violet
+  *2: xo so mien nam
+  *3: xo so mien trung
+  */
+  ?>
     <div class="xs" >
       <h2>xổ số miền bắc</h2>
       <ul>
-        <li><a href="#" title="Kết quả xổ số miền Bắc">Miền Bắc</a></li>
+        <?php
+            $q_mb = "
+              SELECT * FROM tinh WHERE mienTinh = 0
+            ";
+            $mienbac = mysqli_query($dbc,$q_mb);
+            while($tentinh = mysqli_fetch_array($mienbac)):
+        ?>
+        <li><a href="index?id=<?php echo $tentinh['idTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>"><?php echo $tentinh['tenTinh']; ?></a></li>
+      <?php endwhile; ?>
       </ul>
     </div>
     <div class="xs">
       <h2>xổ số điện toán</h2>
       <ul>
-        <li><a href="#" title="Kết quả xổ số điện toán">Điện toán</a></li>
-        <li><a href="#" title="Mega 6/45">Mega 6/45</a></li>
-        <li><a href="#" title="Max 4D">Max 4D</a></li>
-        <li><a href="#" title="Power 6/55">Power 6/55</a></li>
+        <?php
+            $q_vl = "
+              SELECT * FROM tinh WHERE mienTinh = 1
+            ";
+            $violet = mysqli_query($dbc,$q_vl);
+            while($tentinh = mysqli_fetch_array($violet)):
+        ?>
+        <li><a href="index?id=<?php echo $tentinh['idTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>"><?php echo $tentinh['tenTinh']; ?></a></li>
+      <?php endwhile; ?>
       </ul>
     </div>
     <div class="xs"  >
       <h2>xổ số miền nam</h2>
       <ul>
-        <li><a href="#" title="Kết quả xổ số Cần Thơ">Cần Thơ</a></li>
-        <li><a href="#" title="Kết quả xổ số Đồng Nai">Đồng Nai</a></li>
-        <li><a href="#" title="Kết quả xổ số Sóc Trăng">Sóc Trăng</a></li>
-        <li><a href="#" title="Kết quả xổ số Cà Mau">Cà Mau</a></li>
-        <li><a href="#" title="Kết quả xổ số Đồng Tháp">Đồng Tháp</a></li>
-        <li><a href="#" title="Kết quả xổ số Bạc Liêu">Bạc Liêu</a></li>
-        <li><a href="#" title="Kết quả xổ số Bến Tre">Bến Tre</a></li>
-        <li><a href="#" title="Kết quả xổ số Vũng Tàu">Vũng Tàu</a></li>
-        <li><a href="#" title="Kết quả xổ số An Giang">An Giang</a></li>
-        <li><a href="#" title="Kết quả xổ số Bình Thuận">Bình Thuận</a></li>
-        <li><a href="#" title="Kết quả xổ số Tây Ninh">Tây Ninh</a></li>
-        <li><a href="#" title="Kết quả xổ số Bình Dương">Bình Dương</a></li>
-        <li><a href="#" title="Kết quả xổ số Trà Vinh">Trà Vinh</a></li>
-        <li><a href="#" title="Kết quả xổ số Vĩnh Long">Vĩnh Long</a></li>
-        <li><a href="#" title="Kết quả xổ số Bình Phước">Bình Phước</a></li>
-        <li><a href="#" title="Kết quả xổ số Hậu Giang">Hậu Giang</a></li>
-        <li><a href="#" title="Kết quả xổ số Long An">Long An</a></li>
-        <li><a href="#" title="Kết quả xổ số Đà Lạt">Đà Lạt</a></li>
-        <li><a href="#" title="Kết quả xổ số Kiên Giang">Kiên Giang</a></li>
-        <li><a href="#" title="Kết quả xổ số Tiền Giang">Tiền Giang</a></li>
-        <li><a href="#" title="Kết quả xổ số Hồ Chí Minh">Hồ Chí Minh</a></li>
+        <?php
+            $q_mn = "
+              SELECT * FROM tinh WHERE mienTinh = 2
+            ";
+            $miennam = mysqli_query($dbc,$q_mn);
+            while($tentinh = mysqli_fetch_array($miennam)):
+        ?>
+        <li><a href="index?id=<?php echo $tentinh['idTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>"><?php echo $tentinh['tenTinh']; ?></a></li>
+        <?php endwhile; ?>
       </ul>
     </div>
     <div class="xs" >
       <h2>xổ số miền trung</h2>
       <ul>
-        <li><a href="#"  title="Kết quả xổ số Đà Nẵng">Đà Nẵng</a></li>
-        <li><a href="#"  title="Kết quả xổ số Khánh Hòa">Khánh Hòa</a></li>
-        <li><a href="#"  title="Kết quả xổ số Phú Yên">Phú Yên</a></li>
-        <li><a href="#"  title="Kết quả xổ số Thừa Thiên Huế">Thừa Thiên Huế</a></li>
-        <li><a href="#"  title="Kết quả xổ số Đắc Lắc">Đắc Lắc</a></li>
-        <li><a href="#"  title="Kết quả xổ số Quảng Nam">Quảng Nam</a></li>
-        <li><a href="#"  title="Kết quả xổ số Bình Định">Bình Định</a></li>
-        <li><a href="#"  title="Kết quả xổ số Quảng Bình">Quảng Bình</a></li>
-        <li><a href="#"  title="Kết quả xổ số Quảng Trị">Quảng Trị</a></li>
-        <li><a href="#"  title="Kết quả xổ số Gia Lai">Gia Lai</a></li>
-        <li><a href="#"  title="Kết quả xổ số Ninh Thuận">Ninh Thuận</a></li>
-        <li><a href="#"  title="Kết quả xổ số Đắc Nông">Đắc Nông</a></li>
-        <li><a href="#"  title="Kết quả xổ số Quảng Ngãi">Quảng Ngãi</a></li>
-        <li><a href="#"  title="Kết quả xổ số Kon Tum">Kon Tum</a></li>
+        <?php
+            $q_mt = "
+              SELECT * FROM tinh WHERE mienTinh = 3
+            ";
+            $mientrung = mysqli_query($dbc,$q_mt);
+            while($tentinh = mysqli_fetch_array($mientrung)):
+        ?>
+        <li><a href="index?id=<?php echo $tentinh['idTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>"><?php echo $tentinh['tenTinh']; ?></a></li>
+      <?php endwhile; ?>
       </ul>
     </div>
 </div> <!--#sidebar-->

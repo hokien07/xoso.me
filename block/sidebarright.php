@@ -35,9 +35,15 @@
   <div class="thongke">
     <h2>Thống kê kết quả xổ số</h2>
     <ul>
-      <li><a href="#">Thống kê đầu đuôi loto</a></li>
-      <li><a href="#">Thống kê đầu đuôi loto</a></li>
-      <li><a href="#">Thống kê đầu đuôi loto</a></li>
+      <?php
+          $q = "
+            SELECT * FROM thongke
+          ";
+          $r = mysqli_query($dbc, $q);
+          while($thongke = mysqli_fetch_array($r)):
+      ?>
+      <li><a href="index.php?id=<?php echo $thongke['idThongKe']; ?>" title="<?php echo $thongke['tenThongKe']; ?>"><?php echo $thongke['tenThongKe']; ?></a></li>
+    <?php endwhile; ?>
     </ul>
   </div>
 
