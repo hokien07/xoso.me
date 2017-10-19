@@ -3,53 +3,18 @@ include("../database/dbCon.php");
 include("simple_html_dom.php");
 
 $html = file_get_html("http://xoso.me/");
-$tins = $html->find("table.kqmb ");
-//echo $tins;
-//$tins = $html->find("table.bkqtinhmienbac");
-$numbers = array();
-$arr = array("");
+$tins = $html->find("table.fl ");
+$dau1 ="";
+$duoi1 = "";
+$dau2 = "";
+$duoi2 = "";
+
 foreach ($tins as $tin) {
-    //$db = $tin->find("div.clsGiaiDB", 0)->innertext;
-    //$nhat = $tin->find("tr td.number", 0)->innertext;
-   // $nhi = $tin->find("tr td.number", 0)->innertext;
-    $giais = $tin->find("tr");
-    foreach ($giais as $giai) {
-        $numbers = $giai->find("b");
-        for($i = 0; $i <= count($giais); $i++ ) {
-            if(isset($numbers[$i]))
-                array_push($arr, $numbers[$i]->innertext);
-        }
-
-    }
+    //get thong tin dau1.
+    $dau1s = $tin->find("tr")->last_child ();
+    for($i = 0; $i < count($dau1s); $i++)
+        echo $dau1s[$i]->innertext;
 }
-
-$db = $arr[1];
-$giaiNhat = $arr[2];
-$giaiNhi = $arr[3] . "-" . $arr[4] ;
-$giaiBa = $arr[5] . "-" . $arr[6] . "-" . $arr[7] . "-" . $arr[8]. "-" . $arr[9] . "-" . $arr[10];
-$giaiTu = $arr[11] . "-" . $arr[12] . "-" . $arr[13] . "-" . $arr[14];
-$giaiNam = $arr[15] . "-" . $arr[16] . "-" . $arr[17] . "-" . $arr[18]. "-" . $arr[19] . "-" . $arr[20];
-$giaiSau = $arr[21] . "-" . $arr[22] . "-" . $arr[23];
-$giaiBay = $arr[24]. "-". $arr[25] . "-" . $arr[26] . "-" . $arr[27];
-$giaiTam = '';
-
-$q = "
-    INSERT INTO ketqua
-          (dacBiet, giaiNhat, giaiNhi, giaiBa, giaiTu, giaiNam, giaiSau, giaiBay, giaiTam, ngay, idTinh)
-          VALUES ('{$db}', 
-            '{$giaiNhat}',
-            '{$giaiNhi}',
-            '{$giaiBa}',
-            '{$giaiTu}',
-            '{$giaiNam}',
-            '{$giaiSau}',
-            '{$giaiBay}',
-            '{$giaiTam}',
-            NOW(),
-            0
-            )
-";
-$r = mysqli_query($dbc, $q);
 
 //$html = file_get_html("http://xskt.com.vn/tin-tuc/");
 //$tins = $html->find("ul.list-news-center li");

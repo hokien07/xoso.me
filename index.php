@@ -54,7 +54,12 @@ include("function/function.php");
                         </div>
 
                         <div class="link-du-doan">
-                            <a href="#"><span><img src="img/hot2.gif" alt=""></span>Soi Cầu Miền Bắc</a>
+                            <?php
+                                $links = linkDuDoan();
+                                while($link = mysqli_fetch_array($links)){
+                                    echo "<a href='{$link['linkWeb']}' target='_blank'><span><img src='img/hot2.gif' alt='{$link['nameWeb']}'></span>{$link['nameWeb']}</a>";
+                                }
+                            ?>
                         </div>
 
                         <div class="xsmb">
@@ -163,6 +168,54 @@ include("function/function.php");
                                 </tr>
                                 </tbody>
                             </table>
+                        </div>
+
+                        <div class="xsmb-dau-duoi">
+                            <h2 class="title-bor clearfix">Thống kê loto</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">Đầu</th>
+                                            <th colspan="9">Đuôi</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                            for($i = 0; $i<=9; $i++){
+                                        ?>
+                                        <tr>
+                                            <td colspan="3" style="color: darkred; font-weight: bold;"><?php echo $i; ?></td>
+                                            <td colspan="9">@mdo</td>
+                                        </tr>
+                                        <?php } ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="3">Đầu</th>
+                                            <th colspan="9">Đuôi</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        for($i = 0; $i<=9; $i++){
+                                        ?>
+                                        <tr>
+                                            <td colspan="3">Otto</td>
+                                            <td colspan="9" style="color: darkred; font-weight: bold;"><?php echo $i; ?></td>
+                                        </tr>
+                                        <?php }?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 					</div>
 				</div>

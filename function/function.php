@@ -143,4 +143,12 @@ function ngayHomNay() {
     $ngay = date("d/m/Y");
     return "<h3> {$thu} - {$ngay}  </h3>";
 }
+
+//lấy link chèn web
+function linkDuDoan() {
+    global $dbc;
+    $q = "SELECT * FROM linkdudoan ORDER BY idLink DESC";
+    $result = mysqli_query($dbc, $q);
+    return $result;
+}
 ?>
