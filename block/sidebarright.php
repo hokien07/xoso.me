@@ -15,20 +15,26 @@
   <div class="tinmoi">
     <h2>Tin mới nhất</h2>
     <div class="tin-content">
-      <article>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="hinh-tin">
-              <img src="img/new/tin-img.jpg" alt="" class="img-responsive center-block">
+        <?php
+        //lấy tin mói nhất.
+        $tins = tinMoiNhat();
+        while($tin = mysqli_fetch_array($tins)):
+        ?>
+          <article>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="hinh-tin">
+                  <img src="img/tintuc/<?php echo $tin['urlHinh'] ?>" alt="<?php echo $tin['tieuDe'] ?>" class="img-responsive center-block">
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="tin">
+                  <p><?php echo $tin['tieuDe'] ?></p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-8">
-            <div class="tin">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, tempore.</p>
-            </div>
-          </div>
-        </div>
-      </article>
+          </article>
+        <?php endwhile; ?>
     </div>
   </div>
 

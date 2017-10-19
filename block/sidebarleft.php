@@ -1,6 +1,3 @@
-<?php
-  include("database/dbCon.php");
-?>
 <div id="sidebar">
   <?php
   //lay ten tinh trong database

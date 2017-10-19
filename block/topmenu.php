@@ -41,5 +41,4 @@
   </li>
   <li><a href="#" title="Sổ mơ">SỔ MƠ</a></li>
   <li><a href="#" title="Tin tức">TIN</a></li>
-  <li><a href="#" title="Lịch vạn niên">LỊCH</a></li>
 </ul>

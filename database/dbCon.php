@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $pass = "";
-$dbname = "soicau";
+$dbname = "soicau646";
 $dbc = mysqli_connect($host, $username, $pass, $dbname);
 
 //check connect database

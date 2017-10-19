@@ -8,8 +8,6 @@
           <img src="img/icon-ios.png" alt="" class="img-responsive center-block">
         </div>
       </div>
-
-
       <div class="col-md-6">
         <div class="col-right-footer">
               <p>Theo dõi kết quả xổ số nhanh trên: G+ |  Facebook </p>
@@ -19,6 +17,5 @@
     </div>
   </div>
 </footer>
-
 </body>
 </html>
