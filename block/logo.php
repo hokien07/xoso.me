@@ -1,5 +1,5 @@
 <div class="logo-home">
-  <h1><a href="#" title="">Soicau646.com</a></h1>
+  <h1><a href="index.php" title="">Soicau646.com</a></h1>
     <?php
     $date = getdate();
     $thu = $date['weekday'];

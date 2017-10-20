@@ -55,12 +55,28 @@ include("function/function.php");
 
                         <div class="link-du-doan">
                             <?php
+                                getLinkTraCuu();
                                 $links = linkDuDoan();
                                 while($link = mysqli_fetch_array($links)){
                                     echo "<a href='{$link['linkWeb']}' target='_blank'><span><img src='img/hot2.gif' alt='{$link['nameWeb']}'></span>{$link['nameWeb']}</a>";
                                 }
                             ?>
                         </div>
+
+                        <div class="lich-mo-thuong">
+                            <h2 class="title-bor clearfix">Các tỉnh mở thưởng hôm nay</h2>
+                            <div class="row">
+                                <?php
+                                $lichs = lichThuong();
+                                while($lich = mysqli_fetch_array($lichs)):?>
+                                    <div class="col-md-4" style="text-align: left;">
+                                        <img src="img/hot2.gif" alt="soi cầu 646 - soi cầu chuẩn">
+                                        <a href="single.php?tentinh=<?php echo $lich['tenTinhThuong'] ?>"><?php echo $lich['tenTinhThuong'] ?></a>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+                        </div>
+
 
                         <div class="xsmb">
                             <?php
@@ -170,52 +186,173 @@ include("function/function.php");
                             </table>
                         </div>
 
-                        <div class="xsmb-dau-duoi">
-                            <h2 class="title-bor clearfix">Thống kê loto</h2>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th colspan="3">Đầu</th>
-                                            <th colspan="9">Đuôi</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                            for($i = 0; $i<=9; $i++){
-                                        ?>
-                                        <tr>
-                                            <td colspan="3" style="color: darkred; font-weight: bold;"><?php echo $i; ?></td>
-                                            <td colspan="9">@mdo</td>
-                                        </tr>
-                                        <?php } ?>
+                        <!--xo so long ann-->
+                        <div class="xsmn">
+                            <h2 class="title-bor clearfix"><a href="#" title="XSTN <?php echo getThu(); ?>">XSLA <?php echo getThu(); ?></a> - Kết quả xổ số ngày <?php echo $ngay ?></h2>
 
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <table class="table table-responsive-md table-bordered" >
+                                <tbody style="text-align: center">
+                                <?php
+                                    $longan = layKetQuaTheoTen('Long An');
+                                    $count = 8;
+                                    $kg = mysqli_fetch_array($longan);
+                                ?>
+                                <tr>
+                                    <td>Giải 8</td>
+                                    <td colspan="12"><?php echo $kg['giaiTam'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Giải 7</td>
+                                    <td colspan="12"><?php echo $kg['giaiBay'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Giải 6</td>
+                                    <?php
+                                        $giai6s = $kg['giaiSau'];
+                                        $giai6 = explode("-", $giai6s);
+                                    ?>
+                                    <td colspan="4"><?php echo $giai6['0'] ?></td>
+                                    <td colspan="4"><?php echo $giai6['1'] ?></td>
+                                    <td colspan="4"><?php echo $giai6['2'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Giải 5</td>
+                                    <td colspan="12"><?php echo $kg['giaiNam'] ?></td>
+                                </tr>
 
-                                <div class="col-md-6">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th colspan="3">Đầu</th>
-                                            <th colspan="9">Đuôi</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        for($i = 0; $i<=9; $i++){
-                                        ?>
-                                        <tr>
-                                            <td colspan="3">Otto</td>
-                                            <td colspan="9" style="color: darkred; font-weight: bold;"><?php echo $i; ?></td>
-                                        </tr>
-                                        <?php }?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                <tr>
+                                    <td rowspan="2">Giải 4</td>
+                                    <?php
+                                    $giai4s = $kg['giaiTu'];
+                                    $giai4 = explode("-", $giai4s);
+                                    ?>
+                                    <td colspan="3"><?php echo $giai4['0'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['1'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['2'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['3'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><?php echo $giai4['4'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['5'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['6'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Giải 3</td>
+                                    <?php
+                                    $giai3s = $kg['giaiBa'];
+                                    $giai3 = explode("-", $giai3s);
+                                    ?>
+                                    <td colspan="6"><?php echo $giai3['0'] ?></td>
+                                    <td colspan="6"><?php echo $giai3['1'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Giải 2</td>
+                                    <?php
+                                    $giai2s = $kg['giaiNhi'];
+                                    $giai2 = explode("-", $giai2s);
+                                    ?>
+                                    <td colspan="6"><?php echo $giai2['0'] ?></td>
+                                    <td colspan="6"><?php echo $giai2['1'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Giải Nhất</td>
+                                    <td colspan="12"><?php echo $kg['giaiNhat'] ?></td>
+                                </tr>
+
+                                <tr style="color: #E80000; font-weight: bold;">
+                                    <td>Đặc Biệt</td>
+                                    <td colspan="12"><?php echo $kg['dacBiet'] ?></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!--xo so an giang-->
+                        <div class="xsmn">
+                            <h2 class="title-bor clearfix"><a href="#" title="XSTN <?php echo getThu(); ?>">XSAG <?php echo getThu(); ?></a> - Kết quả xổ số ngày <?php echo $ngay ?></h2>
+
+                            <table class="table table-responsive-md table-bordered" >
+                                <tbody style="text-align: center">
+                                <?php
+                                $longan = layKetQuaTheoTen('An Giang');
+                                $kg = mysqli_fetch_array($longan);
+                                ?>
+                                <tr>
+                                    <td>Giải 8</td>
+                                    <td colspan="12"><?php echo $kg['giaiTam'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Giải 7</td>
+                                    <td colspan="12"><?php echo $kg['giaiBay'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Giải 6</td>
+                                    <?php
+                                    $giai6s = $kg['giaiSau'];
+                                    $giai6 = explode("-", $giai6s);
+                                    ?>
+                                    <td colspan="4"><?php echo $giai6['0'] ?></td>
+                                    <td colspan="4"><?php echo $giai6['1'] ?></td>
+                                    <td colspan="4"><?php echo $giai6['2'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Giải 5</td>
+                                    <td colspan="12"><?php echo $kg['giaiNam'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td rowspan="2">Giải 4</td>
+                                    <?php
+                                    $giai4s = $kg['giaiTu'];
+                                    $giai4 = explode("-", $giai4s);
+                                    ?>
+                                    <td colspan="3"><?php echo $giai4['0'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['1'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['2'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['3'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><?php echo $giai4['4'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['5'] ?></td>
+                                    <td colspan="3"><?php echo $giai4['6'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Giải 3</td>
+                                    <?php
+                                    $giai3s = $kg['giaiBa'];
+                                    $giai3 = explode("-", $giai3s);
+                                    ?>
+                                    <td colspan="6"><?php echo $giai3['0'] ?></td>
+                                    <td colspan="6"><?php echo $giai3['1'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Giải 2</td>
+                                    <?php
+                                    $giai2s = $kg['giaiNhi'];
+                                    $giai2 = explode("-", $giai2s);
+                                    ?>
+                                    <td colspan="6"><?php echo $giai2['0'] ?></td>
+                                    <td colspan="6"><?php echo $giai2['1'] ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Giải Nhất</td>
+                                    <td colspan="12"><?php echo $kg['giaiNhat'] ?></td>
+                                </tr>
+
+                                <tr style="color: #E80000; font-weight: bold;">
+                                    <td>Đặc Biệt</td>
+                                    <td colspan="12"><?php echo $kg['dacBiet'] ?></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
                         </div>
 					</div>
 				</div>

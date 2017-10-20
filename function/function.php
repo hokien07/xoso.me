@@ -37,6 +37,19 @@ function get_tinMoiNhat() {
     }
 }
 
+function getLinkTraCuu() {
+    global  $dbc;
+    $html = file_get_html("http://xoso.me/");
+    $links = $html->find("div.link-du-doan");
+    foreach ($links as $link) {
+        $title = $link->find("a", 0)->innertext;
+        $href = $link->find("a", 0)->href;
+        if (isset($img, $title)) {
+            $q = "INSERT INTO linkdudoan (linkWeb, nameWeb) VALUES ('{$href}', '{$title}')";
+            $r = mysqli_query($dbc, $q);
+        }
+    }
+}
 //lay tin mới nhất từ database
 function tinMoiNhat() {
   global $dbc;
@@ -50,12 +63,8 @@ function get_kqMienBac() {
     global $dbc;
     $html = file_get_html("http://xoso.me/");
     $tins = $html->find("table.kqmb ");
-    //$numbers = array();
     $arr = array("");
     foreach ($tins as $tin) {
-        //$db = $tin->find("div.clsGiaiDB", 0)->innertext;
-        //$nhat = $tin->find("tr td.number", 0)->innertext;
-        // $nhi = $tin->find("tr td.number", 0)->innertext;
         $giais = $tin->find("tr");
         foreach ($giais as $giai) {
             $numbers = $giai->find("b");
@@ -137,6 +146,11 @@ function getThu() {
     return $weekday;
 }
 
+//lấy ngày hiện tại
+function getNgay() {
+
+}
+
 //lấy ngày và thời gian hiện tại.
 function ngayHomNay() {
     $thu = getThu();
@@ -151,4 +165,133 @@ function linkDuDoan() {
     $result = mysqli_query($dbc, $q);
     return $result;
 }
+
+function get_thongKeDuoi(){
+    global $dbc;
+    $html = file_get_html("http://xoso.me/");
+    $tins = $html->find("table.fl tbody");
+    foreach ($tins as $tin) {
+        //get thong tin dau1.
+        $tds = $tin->find("tr td");
+        foreach ($tds as $td){
+            $s =  $td->next_sibling();
+            $q = "INSERT INTO thongkedauduoi
+                (duoi1, dau2, idTinh)
+                VALUES ('{$s}', '', 0)";
+            $r = mysqli_query($dbc, $q);
+        }
+    }
+}
+//lấy kết quả thông kê loto từ database
+function thongKeDuoi() {
+    global $dbc;
+    $q = "SELECT * FROM thongkedauduoi WHERE idTinh = 0";
+    $result = mysqli_query($dbc, $q);
+    return $result;
+}
+
+//lâý keets quả theo tiỉnh từ trang xoso.me.
+function ketQuaTinh($src, $idtinh) {
+    global $dbc;
+    $html = file_get_html($src);
+    $xsmn = $html->find("div#load_kq_tinh_0 div.one-city table.extendable td.number b");
+    $giai = array();
+    foreach ($xsmn as $xs){
+        //đưa kêts quả vfào amngr.
+        array_push($giai, $xs->innertext);
+    }
+
+    $giaiTam = $giai[0];
+    $giaiNhat = $giai[16];
+    $giaiNhi = $giai[15] . "-" . $giai[4] ;
+    $giaiBa = $giai[14]."-" . $giai[13];
+    $giaiTu = $giai[12] . "-" . $giai[12] . "-" . $giai[10] . "-" . $giai[9] . "-" . $giai[8] . "-" . $giai[7] . "-" . $giai[6];
+    $giaiNam = $giai[5];
+    $giaiSau = $giai[4] . "-" . $giai[3] . "-" . $giai[3];
+    $giaiBay = $giai[1];
+    $db = $giai[17];
+
+    //chenf vaào datab.
+    $q = "INSERT INTO ketqua 
+          (dacBiet, giaiNhat, giaiNhi, giaiBa, giaiTu, giaiNam, giaiSau, giaiBay, giaiTam, ngay, idTinh)
+          VALUES 
+          (
+            '{$db}', 
+            '{$giaiNhat}',
+            '{$giaiNhi}',
+            '{$giaiBa}',
+            '{$giaiTu}',
+            '{$giaiNam}',
+            '{$giaiSau}',
+            '{$giaiBay}',
+            '{$giaiTam}',
+              NOW(),
+            '$idtinh'
+          )";
+    $result = mysqli_query($dbc, $q);
+}
+
+//lấy lịch thuownrt từ xoso.me.
+function getLichThuong() {
+    global $dbc;
+    $html = file_get_html("http://xoso.me/");
+    $mtn = $html->find("div.mo-thuong-ngay table.colgiai tr td a");
+    foreach ($mtn as $t){
+        $tmt = $t->innertext;
+        $q = "INSERT INTO lichmothuong (tenTinhThuong, ngayThuong) VALUES ('{$tmt}', NOW())";
+        $r = mysqli_query($dbc, $q);
+    }
+}
+//layslichj mở thưởng.
+function lichThuong() {
+    global $dbc;
+    $q = "SELECT * FROM lichmothuong";
+    $result = mysqli_query($dbc, $q);
+
+    return $result;
+}
+
+//lấy  kết quả theo id Tinh và tên Tỉnh.
+function layKetQuaTheoTen($name) {
+    global $dbc;
+    $q = "SELECT kq.*, t.tenTinh
+          FROM ketqua kq
+          INNER JOIN tinh t ON t.idTinh = kq.idTinh 
+          WHERE t.tenTinh = '{$name}'
+          ORDER BY kq.idKetQua DESC LIMIT 0, 1";
+    $result = mysqli_query($dbc,$q);
+
+    return $result;
+}
+
+//lấy  kết quả theo id Tinh và tên Tỉnh đợt trước
+function layKetQuaTheoTen1($name) {
+    global $dbc;
+    $q = "SELECT kq.*, t.tenTinh
+          FROM ketqua kq
+          INNER JOIN tinh t ON t.idTinh = kq.idTinh 
+          WHERE t.tenTinh = '{$name}'
+          ORDER BY kq.idKetQua DESC LIMIT 1, 1";
+    $result = mysqli_query($dbc,$q);
+
+    return $result;
+}
+
+//chia sẻ bài viết lên facebook
+function facebookShare() {?>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="fb-like" data-href="http://soicau646.com" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+<?php }
+
+
+
+
 ?>

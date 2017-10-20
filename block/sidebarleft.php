@@ -18,7 +18,8 @@
             $mienbac = mysqli_query($dbc,$q_mb);
             while($tentinh = mysqli_fetch_array($mienbac)):
         ?>
-        <li><a href="index?id=<?php echo $tentinh['idTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>"><?php echo $tentinh['tenTinh']; ?></a></li>
+        <li><a href="single.php?tentinh=<?php echo $tentinh['tenTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>">
+                <img src="img/hot2.gif" alt="soi cầu 646 - soi cầu chuẩn"> <?php echo $tentinh['tenTinh']; ?></a></li>
       <?php endwhile; ?>
       </ul>
     </div>
@@ -32,7 +33,8 @@
             $violet = mysqli_query($dbc,$q_vl);
             while($tentinh = mysqli_fetch_array($violet)):
         ?>
-        <li><a href="index?id=<?php echo $tentinh['idTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>"><?php echo $tentinh['tenTinh']; ?></a></li>
+        <li><a href="single.php?tentinh=<?php echo $tentinh['tenTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>">
+                <img src="img/hot2.gif" alt="soi cầu 646 - soi cầu chuẩn"> <?php echo $tentinh['tenTinh']; ?></a></li>
       <?php endwhile; ?>
       </ul>
     </div>
@@ -46,7 +48,8 @@
             $miennam = mysqli_query($dbc,$q_mn);
             while($tentinh = mysqli_fetch_array($miennam)):
         ?>
-        <li><a href="index?id=<?php echo $tentinh['idTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>"><?php echo $tentinh['tenTinh']; ?></a></li>
+        <li><a href="single.php?tentinh=<?php echo $tentinh['tenTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>">
+                <img src="img/hot2.gif" alt="soi cầu 646 - soi cầu chuẩn"> <?php echo $tentinh['tenTinh']; ?></a></li>
         <?php endwhile; ?>
       </ul>
     </div>
@@ -60,7 +63,8 @@
             $mientrung = mysqli_query($dbc,$q_mt);
             while($tentinh = mysqli_fetch_array($mientrung)):
         ?>
-        <li><a href="index?id=<?php echo $tentinh['idTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>"><?php echo $tentinh['tenTinh']; ?></a></li>
+        <li><a href="single.php?tentinh=<?php echo $tentinh['tenTinh'] ?>" title="<?php echo "Xo so moi nhat ".$tentinh['tenTinh'] ?>">
+                <img src="img/hot2.gif" alt="soi cầu 646 - soi cầu chuẩn"> <?php echo $tentinh['tenTinh']; ?></a></li>
       <?php endwhile; ?>
       </ul>
     </div>

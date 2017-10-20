@@ -48,6 +48,7 @@ body {
 .nav ul{
 	text-align: left;
 	margin: 0;
+	z-index: 1000;
 }
 
 .nav ul li{

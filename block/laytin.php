@@ -2,34 +2,17 @@
 include("../database/dbCon.php");
 include("simple_html_dom.php");
 
-$html = file_get_html("http://xoso.me/");
-$tins = $html->find("table.fl ");
-$dau1 ="";
-$duoi1 = "";
-$dau2 = "";
-$duoi2 = "";
 
-foreach ($tins as $tin) {
-    //get thong tin dau1.
-    $dau1s = $tin->find("tr")->last_child ();
-    for($i = 0; $i < count($dau1s); $i++)
-        echo $dau1s[$i]->innertext;
+$html = file_get_html("http://xoso.me/");
+$mtn = $html->find("div.mo-thuong-ngay table.colgiai tr td a");
+foreach ($mtn as $t){
+    $tmt = $t->innertext;
+    $q = "INSERT INTO lichmothuong (tenTinhThuong, ngayThuong) VALUES ('{$tmt}', NOW())";
+    $r = mysqli_query($dbc, $q);
 }
 
-//$html = file_get_html("http://xskt.com.vn/tin-tuc/");
-//$tins = $html->find("ul.list-news-center li");
-/*foreach ($tins as $tin){
-  $img = $tin->find("img", 0)->src;
-  $title = $tin->find("a",1)->innertext;
 
-    $hinh = '../img/tintuc/'. basename($img);
-    file_put_contents($hinh, file_get_contents($img));
-   echo  $tenHinh = basename($img);
-   echo "<img src = '{$img}' />";
-  /*if(isset($img, $title)) {
-    $q = "INSERT INTO tintuc (urlHinh, tieuDe) VALUES ('{$tenHinh}', '{$title}')";
-    $r = mysqli_query($dbc, $q);
-  }*/
+
 
 
 /*foreach ($tins as $tin) {
